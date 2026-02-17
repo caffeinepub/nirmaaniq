@@ -1,0 +1,144 @@
+{
+  "kind": "build_request",
+  "title": "Align branding (Deep Purple/Smart Green), enforce exact role strings, and add My Profile page",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-13",
+      "text": "Update the app’s visual theme to match the specified construction-tech brand style: primary Deep Purple (#4B2E83), accent Smart Green (#3CCF4E), white backgrounds, modern SaaS cards with soft shadows and rounded edges, and a professional engineering tone across all pages (Landing, Auth, Dashboard, Projects, Daily Logs, Planning, Analytics, Reports). Replace existing blue/grey theme usages with the new palette, including gradients, icons, badges, buttons, links, and chart/status colors (keep red only for risk/critical indicators).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Primary Colors:\nDeep Purple (#4B2E83)\nSmart Green (#3CCF4E)\nWhite background"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Primary UI color tokens/styles across the app visibly reflect Deep Purple for navigation/primary actions and Smart Green for positive indicators; white remains the dominant background.",
+        "No prominent blue/grey theme remnants remain in navigation, auth gradients, badges, or icon colors (except neutral grays for text/borders).",
+        "Dashboard status indicators use Smart Green for positive/on-track states and Deep Purple for non-status UI accents; red remains reserved for delay/critical states."
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "text": "Add a generated NirmaanIQ logo asset and render it in the top-left of the navigation header. Replace the current generic building icon usage in the header with the provided static logo image while keeping the app name text readable and aligned to the brand style.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Logo placement: Top left in navigation header."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Top navigation shows the NirmaanIQ logo at the far left on both desktop and mobile layouts.",
+        "Logo is loaded as a static asset from the frontend (not via backend).",
+        "Header remains responsive; logo does not overlap navigation or user controls on small screens."
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "text": "Enforce that application role values stored in the database are exactly: admin, site_engineer, project_manager. Update registration/profile save flows and any role-based UI gating to use these exact values, while optionally displaying human-friendly labels (e.g., “Admin”) in the UI.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "IMPORTANT: Role values must be stored exactly as:\nadmin\nsite_engineer\nproject_manager"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Creating/saving a user profile persists role as one of: admin | site_engineer | project_manager (lowercase with underscore).",
+        "Any admin-only UI (e.g., Create Project) is shown only when the current user’s stored role is exactly \"admin\".",
+        "Role badges/labels in the UI may be title-cased, but underlying stored values remain exact."
+      ]
+    },
+    {
+      "id": "REQ-16",
+      "text": "Extend the user profile data model and related APIs to support the requested profile fields: full_name, phone, designation, company_name, role, and assigned_project. Ensure existing stored profiles remain usable (provide a backward-compatible read path and/or a state migration to map existing fields like name/email/role into the new structure).",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "User (default Bubble user):\nfull_name (text)\nrole (text)\nphone (text)\ndesignation (text)\ncompany_name (text)\nassigned_project (Project)"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend exposes caller profile read/write supporting: full_name, phone, designation, company_name, role, and assigned_project (nullable/optional where appropriate).",
+        "Existing users with older profiles can still load their profile without backend traps; missing new fields default safely.",
+        "Role in stored profile is normalized to the required exact values (admin/site_engineer/project_manager) or migration handles old values (e.g., \"Admin\") to the normalized values."
+      ]
+    },
+    {
+      "id": "REQ-17",
+      "text": "Add a “My Profile” page where a signed-in user can view and edit: full name, phone, designation, company name; view role as read-only; and save changes. Add an option labeled “Change password” that routes the user to the appropriate Internet Identity flow/page (since password management is handled by Internet Identity). Include a clear “Save Changes” button with success/error feedback.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "👤 MY PROFILE PAGE\nUser must be able to:\nEdit full name\nEdit phone\nEdit designation\nEdit company name\nChange password\nDisplay role (read-only).\nAdd Save Changes button."
+        ]
+      },
+      "acceptanceCriteria": [
+        "A new authenticated route/page for “My Profile” exists and is reachable from the top navigation (or user menu).",
+        "The page loads current profile data and allows editing full name/phone/designation/company name; role is displayed but not editable.",
+        "Clicking “Save Changes” persists updates and shows a success toast; failures show an error toast.",
+        "“Change password” is present and takes the user to Internet Identity password/anchor management (opens in a new tab/window or navigates appropriately)."
+      ]
+    },
+    {
+      "id": "REQ-18",
+      "text": "Update the onboarding/registration UI to collect and save the new user profile fields (full name, phone, designation, company name) and store role using the exact role values (admin/site_engineer/project_manager). Ensure all user-facing text remains English and consistent with the professional construction-tech tone.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Use English for any user-facing text in the build request."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Register/Profile completion form includes inputs for full name, phone, designation, company name, and role selection.",
+        "Role selection writes exact stored values (admin/site_engineer/project_manager) even if the UI shows title-cased labels.",
+        "After successful profile creation, user is redirected to the dashboard as before."
+      ]
+    }
+  ],
+  "constraints": [
+    "Backend must remain a single Motoko actor in backend/main.mo; add backend/migration.mo only if required to preserve/upgrade existing stable state.",
+    "Do not edit frontend paths listed as immutable in SYSTEM_CONTEXT (compose existing UI components instead).",
+    "Do not introduce third-party authentication; use Internet Identity only."
+  ],
+  "nonGoals": [
+    "Re-implementing existing modules already present (Projects, Daily Logs, Planning, Analytics, Delay Alerts, DPR generation) beyond necessary adjustments for role string normalization and branding updates.",
+    "Adding external databases or non-Internet Computer backend services.",
+    "Implementing real-time features (WebSockets/chat/notifications)."
+  ],
+  "imageRequirements": {
+    "required": [
+      "NirmaanIQ wordmark logo on transparent background using deep purple and smart green, modern SaaS/construction-tech style (nirmaaniq-logo.dim_512x128.png)"
+    ],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [
+      "Use Deep Purple (#4B2E83) and Smart Green (#3CCF4E) with a white background; modern SaaS cards, soft shadows, rounded edges; logo in top-left nav."
+    ],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

@@ -1,0 +1,251 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 5,
+  "summary": "NirmaanIQ: responsive role-based construction project digital site logbook with structured data models, productivity analytics, rule-based delay risk alerts, DPR (PDF) generation, and a modern construction-tech UI theme (Deep Purple/Smart Green/white).",
+  "architectural_notes": [
+    "Responsive web app with role-based access control (Admin/Site Engineer/Project Manager).",
+    "Rule-based (non-AI) productivity analysis and delay risk alerts: trigger when actual <80% of planned for 2 consecutive days.",
+    "Role values must be stored exactly as: admin, site_engineer, project_manager; enforce permissions using Current User's role field.",
+    "Data model includes User (full_name, role, phone, designation, company_name, assigned_project), Project (created_by auto=Current User), Daily_Log (created_by), Interruption linked to Daily_Log with duration calculations.",
+    "Brand/UI theme: Deep Purple (#4B2E83) + Smart Green (#3CCF4E) on white; modern SaaS cards, soft shadows, rounded edges; logo top-left in nav header; clean sans-serif typography."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- NirmaanIQ wordmark logo on transparent background using deep purple and smart green, modern SaaS/construction-tech style (nirmaaniq-logo.dim_512x128.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-a-public-landing-page-for-the-app-with-the-following-content-and-actions-app-name-nirmaaniq-tagline-smart-digital-site-logbook-with-intelligent-project-insights-a-short-description-mentioning-digital-log-entry-productivity-tracking-delay-alerts-and-dpr-generation-and-two-buttons-register-and-login",
+      "title": "Create a public Landing page for the app with the following content and actions: app name “NirmaanIQ”, tagline “Smart Digital Site Logbook with Intelligent Project Insights”, a short description mentioning digital log entry, productivity tracking, delay alerts, and DPR generation, and two buttons: Register and Login.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-authentication-and-role-based-access-for-three-roles-admin-site-engineer-project-manager-and-enforce-that-after-successful-login-the-user-is-redirected-to-the-dashboard",
+      "title": "Implement authentication and role-based access for three roles (Admin, Site Engineer, Project Manager) and enforce that after successful login the user is redirected to the Dashboard.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-top-navigation-menu-that-includes-dashboard-projects-daily-logs-planning-analytics-reports-settings-logout-ensure-it-is-responsive-for-desktop-and-mobile",
+      "title": "Add a top navigation menu that includes: Dashboard, Projects, Daily Logs, Planning, Analytics, Reports, Settings, Logout; ensure it is responsive for desktop and mobile.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-the-post-login-dashboard-page-with-widgets-total-projects-today-s-log-status-completed-pending-overall-progress-delay-risk-indicator-green-yellow-red-total-interruptions-this-week-and-quick-buttons-add-log-view-analytics-generate-dpr",
+      "title": "Create the post-login Dashboard page with widgets: Total Projects, Today’s Log Status (Completed/Pending), Overall Progress %, Delay Risk Indicator (Green/Yellow/Red), Total Interruptions This Week; and quick buttons: Add Log, View Analytics, Generate DPR.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-admin-capabilities-create-new-projects-assign-users-to-projects-and-manage-user-roles-include-a-create-project-form-with-fields-project-name-location-project-type-residential-commercial-infrastructure-industrial-start-date-planned-completion-date-planned-working-hours-per-day-working-days-per-week-after-submission-the-project-must-appear-in-a-project-list",
+      "title": "Implement Admin capabilities: create new projects, assign users to projects, and manage user roles. Include a “Create Project” form with fields: Project Name, Location, Project Type (Residential/Commercial/Infrastructure/Industrial), Start Date, Planned Completion Date, Planned Working Hours Per Day, Working Days Per Week. After submission, the project must appear in a project list.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-site-engineer-daily-log-entry-workflow-with-a-daily-log-entry-screen-containing-1-activity-details-date-auto-filled-activity-name-planned-quantity-actual-quantity-completed-unit-of-measurement-number-of-laborers-number-of-supervisors-2-working-hours-start-time-end-time-auto-calculate-total-working-hours-3-interruptions-an-add-interruption-action-that-records-interruption-reason-rain-material-delay-equipment-breakdown-accident-inspection-delay-power-failure-other-pause-start-time-pause-end-time-system-calculates-total-pause-duration-and-net-working-hours-total-hours-pause-duration-4-photo-upload-allow-multiple-photos-and-save-each-with-timestamp-5-remarks-free-text-and-a-submit-log-button-after-submission-save-data-mark-daily-log-as-completed-and-redirect-to-dashboard",
+      "title": "Implement Site Engineer daily log entry workflow with a Daily Log Entry screen containing: (1) Activity Details: Date auto-filled, Activity Name, Planned Quantity, Actual Quantity Completed, Unit of Measurement, Number of Laborers, Number of Supervisors; (2) Working Hours: Start Time, End Time, auto-calculate Total Working Hours; (3) Interruptions: an “Add Interruption” action that records Interruption Reason (Rain, Material Delay, Equipment Breakdown, Accident, Inspection Delay, Power Failure, Other), Pause Start Time, Pause End Time; system calculates Total Pause Duration and Net Working Hours = Total Hours − Pause Duration; (4) Photo Upload: allow multiple photos and save each with timestamp; (5) Remarks: free text; and a Submit Log button. After submission: save data, mark daily log as completed, and redirect to Dashboard.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-project-manager-planning-capabilities-a-planning-screen-that-lets-the-project-manager-select-an-activity-set-planned-daily-quantity-start-date-end-date-save-the-plan-and-edit-existing-planned-targets",
+      "title": "Implement Project Manager planning capabilities: a Planning screen that lets the Project Manager select an activity, set Planned Daily Quantity, Start Date, End Date, save the plan, and edit existing planned targets.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-an-analytics-productivity-page-that-for-each-activity-displays-planned-quantity-actual-quantity-productivity-percentage-and-a-status-indicator-green-on-track-yellow-slightly-delayed-red-critical-delay-using-progress-bars-or-simple-charts",
+      "title": "Create an Analytics & Productivity page that, for each activity, displays Planned Quantity, Actual Quantity, Productivity Percentage, and a status indicator (Green = On Track, Yellow = Slightly Delayed, Red = Critical Delay) using progress bars or simple charts.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-delay-detection-and-alerts-if-actual-productivity-is-below-80-of-planned-for-2-consecutive-days-for-an-activity-display-a-dashboard-alert-delay-risk-detected-for-activity-name-and-highlight-the-activity-in-red",
+      "title": "Implement delay detection and alerts: if actual productivity is below 80% of planned for 2 consecutive days for an activity, display a Dashboard alert “Delay Risk Detected for [Activity Name]” and highlight the activity in red.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-intelligent-suggestions-section-shown-below-any-delay-alert-on-the-dashboard-providing-rule-based-recommendations-non-ml-such-as-increase-manpower-review-workflow-reschedule-activity-investigate-repeated-interruptions",
+      "title": "Add an “Intelligent Suggestions” section shown below any delay alert on the Dashboard, providing rule-based recommendations (non-ML) such as: Increase manpower, Review workflow, Reschedule activity, Investigate repeated interruptions.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-dpr-daily-progress-report-generation-with-a-generate-daily-progress-report-button-the-dpr-must-include-date-activities-completed-quantities-achieved-labor-deployed-interruptions-recorded-photos-productivity-status-and-provide-an-option-to-download-as-pdf",
+      "title": "Implement DPR (Daily Progress Report) generation with a “Generate Daily Progress Report” button. The DPR must include: Date, Activities completed, Quantities achieved, Labor deployed, Interruptions recorded, Photos, Productivity status, and provide an option to download as PDF.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-the-requested-design-requirements-across-the-app-clean-professional-ui-blue-and-grey-construction-theme-responsive-layout-and-structured-industry-oriented-information-layout",
+      "title": "Apply the requested design requirements across the app: clean professional UI, blue and grey construction theme, responsive layout, and structured/industry-oriented information layout.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-app-s-visual-theme-to-match-the-specified-construction-tech-brand-style-primary-deep-purple-4b2e83-accent-smart-green-3ccf4e-white-backgrounds-modern-saas-cards-with-soft-shadows-and-rounded-edges-and-a-professional-engineering-tone-across-all-pages-landing-auth-dashboard-projects-daily-logs-planning-analytics-reports-replace-existing-blue-grey-theme-usages-with-the-new-palette-including-gradients-icons-badges-buttons-links-and-chart-status-colors-keep-red-only-for-risk-critical-indicators",
+      "title": "Update the app’s visual theme to match the specified construction-tech brand style: primary Deep Purple (#4B2E83), accent Smart Green (#3CCF4E), white backgrounds, modern SaaS cards with soft shadows and rounded edges, and a professional engineering tone across all pages (Landing, Auth, Dashboard, Projects, Daily Logs, Planning, Analytics, Reports). Replace existing blue/grey theme usages with the new palette, including gradients, icons, badges, buttons, links, and chart/status colors (keep red only for risk/critical indicators).",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-generated-nirmaaniq-logo-asset-and-render-it-in-the-top-left-of-the-navigation-header-replace-the-current-generic-building-icon-usage-in-the-header-with-the-provided-static-logo-image-while-keeping-the-app-name-text-readable-and-aligned-to-the-brand-style",
+      "title": "Add a generated NirmaanIQ logo asset and render it in the top-left of the navigation header. Replace the current generic building icon usage in the header with the provided static logo image while keeping the app name text readable and aligned to the brand style.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-enforce-that-application-role-values-stored-in-the-database-are-exactly-admin-site-engineer-project-manager-update-registration-profile-save-flows-and-any-role-based-ui-gating-to-use-these-exact-values-while-optionally-displaying-human-friendly-labels-e-g-admin-in-the-ui",
+      "title": "Enforce that application role values stored in the database are exactly: admin, site_engineer, project_manager. Update registration/profile save flows and any role-based UI gating to use these exact values, while optionally displaying human-friendly labels (e.g., “Admin”) in the UI.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-my-profile-page-where-a-signed-in-user-can-view-and-edit-full-name-phone-designation-company-name-view-role-as-read-only-and-save-changes-add-an-option-labeled-change-password-that-routes-the-user-to-the-appropriate-internet-identity-flow-page-since-password-management-is-handled-by-internet-identity-include-a-clear-save-changes-button-with-success-error-feedback",
+      "title": "Add a “My Profile” page where a signed-in user can view and edit: full name, phone, designation, company name; view role as read-only; and save changes. Add an option labeled “Change password” that routes the user to the appropriate Internet Identity flow/page (since password management is handled by Internet Identity). Include a clear “Save Changes” button with success/error feedback.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-onboarding-registration-ui-to-collect-and-save-the-new-user-profile-fields-full-name-phone-designation-company-name-and-store-role-using-the-exact-role-values-admin-site-engineer-project-manager-ensure-all-user-facing-text-remains-english-and-consistent-with-the-professional-construction-tech-tone",
+      "title": "Update the onboarding/registration UI to collect and save the new user profile fields (full name, phone, designation, company name) and store role using the exact role values (admin/site_engineer/project_manager). Ensure all user-facing text remains English and consistent with the professional construction-tech tone.",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Landing page for NirmaanIQ with tagline, description, and Register/Login buttons",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Authentication with role-based access (Admin, Site Engineer, Project Manager) and post-login redirect to Dashboard",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Admin: project creation form (name, location, type, dates, working hours/days) and project list display",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Admin: assign users to projects and manage user roles/permissions",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Site Engineer: Daily Log entry screen with activity details, working hours auto-calc, interruptions with net hours calc, photo upload, remarks, submit flow",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Project Manager: Planning screen to set/edit planned daily quantity targets per activity with date ranges",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Analytics & productivity page showing planned vs actual, productivity %, and green/yellow/red status with charts/progress bars",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Delay detection logic: alert on dashboard when actual productivity <80% of planned for 2 consecutive days, highlight activity in red",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Rule-based intelligent suggestions displayed under delay alerts (non-AI)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "DPR generation: compile daily progress report (date, activities, quantities, labor, interruptions, photos, productivity) with PDF download option",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Dashboard widgets: total projects, today's log status, overall progress %, delay risk indicator, interruptions this week, quick actions",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Top navigation menu: Dashboard, Projects, Daily Logs, Planning, Analytics, Reports, Settings, Logout",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "UI/UX design: clean professional responsive layout with blue/grey construction theme",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "My Profile page: edit full name, phone, designation, company name, change password; show role read-only; Save Changes button",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-18",
+      "summary": "Extend the user profile data model and related APIs to support the requested profile fields: full_name, phone, designation, company_name, role, and assigned_project. Ensure existing stored profiles remain usable (provide a backward-compatible read path and/or a state migration to map existing fields like name/email/role into the new structure).",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "NirmaanIQ",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

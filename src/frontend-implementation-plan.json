@@ -1,0 +1,193 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Brand theme refresh (Deep Purple/Smart Green), standardized roles, and My Profile page",
+  "requirements": [
+    {
+      "id": "REQ-13",
+      "summary": "Update global styling and page-level UI accents to the Deep Purple/Smart Green construction-tech brand theme across all pages.",
+      "acceptanceCriteria": [
+        "Primary UI color tokens/styles across the app visibly reflect Deep Purple for navigation/primary actions and Smart Green for positive indicators; white remains the dominant background.",
+        "No prominent blue/grey theme remnants remain in navigation, auth gradients, badges, or icon colors (except neutral grays for text/borders).",
+        "Dashboard status indicators use Smart Green for positive/on-track states and Deep Purple for non-status UI accents; red remains reserved for delay/critical states."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Replace the existing blue/grey CSS color tokens with Deep Purple (#4B2E83) as primary and Smart Green (#3CCF4E) as accent, keep white-dominant backgrounds, and update chart/status variables so positive states map to Smart Green and critical states remain red."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend/adjust Tailwind theme so the design system (primary/accent/chart colors) aligns with the updated CSS tokens and supports modern SaaS card shadows/rounding consistently across the app."
+        },
+        {
+          "path": "frontend/src/components/layout/AppLayout.tsx",
+          "operation": "modify",
+          "description": "Update layout background/surfaces to a white-dominant look with modern SaaS card styling (soft shadows, rounded edges) and remove remaining slate/blue theme remnants."
+        },
+        {
+          "path": "frontend/src/components/layout/TopNav.tsx",
+          "operation": "modify",
+          "description": "Update header styling (borders, backgrounds, active/hover states, badges/links) to use Deep Purple for primary navigation accents and Smart Green for positive/confirming cues; eliminate blue-themed classes."
+        },
+        {
+          "path": "frontend/src/pages/LandingPage.tsx",
+          "operation": "modify",
+          "description": "Replace blue-centric gradients, icon backgrounds, and feature card accents with the Deep Purple/Smart Green palette and ensure professional engineering tone remains consistent."
+        },
+        {
+          "path": "frontend/src/pages/auth/LoginPage.tsx",
+          "operation": "modify",
+          "description": "Update auth page gradients and icon accents to match the new Deep Purple/Smart Green theme and remove blue remnants while keeping text readable and professional."
+        },
+        {
+          "path": "frontend/src/pages/auth/RegisterPage.tsx",
+          "operation": "modify",
+          "description": "Update onboarding page gradients, icon accents, and card styling to match the new Deep Purple/Smart Green theme (removing blue remnants) while keeping a professional construction-tech tone."
+        },
+        {
+          "path": "frontend/src/pages/DashboardPage.tsx",
+          "operation": "modify",
+          "description": "Update dashboard progress bars, status badges, and indicator colors so on-track/positive states use Smart Green, Deep Purple is used for non-status accents, and red remains only for critical/delay states; remove remaining blue classes."
+        },
+        {
+          "path": "frontend/src/components/dashboard/DelayAlertPanel.tsx",
+          "operation": "modify",
+          "description": "Remove blue-themed suggestion panel styling and replace with brand-aligned surfaces (Deep Purple accents, Smart Green for positive guidance) while preserving red for destructive/critical alerts."
+        },
+        {
+          "path": "frontend/src/pages/ProjectsPage.tsx",
+          "operation": "modify",
+          "description": "Replace project card icon blocks and any remaining blue theme utilities with Deep Purple/Smart Green styling and maintain modern card visuals."
+        },
+        {
+          "path": "frontend/src/pages/DailyLogEntryPage.tsx",
+          "operation": "modify",
+          "description": "Replace blue-themed working-hours summary panel and related accents with brand-aligned colors (Deep Purple accents; Smart Green for net/positive values; keep amber/red semantics intact)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "summary": "Add the generated NirmaanIQ wordmark logo as a static asset and render it in the top-left of the navigation header (replacing the generic building icon).",
+      "acceptanceCriteria": [
+        "Top navigation shows the NirmaanIQ logo at the far left on both desktop and mobile layouts.",
+        "Logo is loaded as a static asset from the frontend (not via backend).",
+        "Header remains responsive; logo does not overlap navigation or user controls on small screens."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/nirmaaniq-logo.dim_512x128.png",
+          "operation": "create",
+          "description": "Add the generated static logo asset required by the BuildRequest at frontend/public/assets/generated/nirmaaniq-logo.dim_512x128.png."
+        },
+        {
+          "path": "frontend/src/components/layout/TopNav.tsx",
+          "operation": "modify",
+          "description": "Replace the current generic building icon in the top-left header with the static logo image from frontend/public/assets/generated/nirmaaniq-logo.dim_512x128.png, ensure proper sizing and responsive behavior on desktop/mobile."
+        },
+        {
+          "path": "frontend/src/pages/LandingPage.tsx",
+          "operation": "modify",
+          "description": "Update the landing header brand mark to use the same static logo image (frontend/public/assets/generated/nirmaaniq-logo.dim_512x128.png) to keep branding consistent with the authenticated top navigation."
+        }
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "summary": "Normalize frontend role handling to use exact stored role strings (admin, site_engineer, project_manager) for profile save flows and role-based UI gating, while displaying human-friendly labels.",
+      "acceptanceCriteria": [
+        "Creating/saving a user profile persists role as one of: admin | site_engineer | project_manager (lowercase with underscore).",
+        "Any admin-only UI (e.g., Create Project) is shown only when the current user’s stored role is exactly \"admin\".",
+        "Role badges/labels in the UI may be title-cased, but underlying stored values remain exact."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/lib/roles.ts",
+          "operation": "create",
+          "description": "Create centralized helpers for standardized roles (admin/site_engineer/project_manager), including label mapping (e.g., \"Project Manager\") and safe normalization for any legacy display strings used in the UI."
+        },
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Align role-related hooks with the standardized role type used by the backend interface and ensure mutations/queries pass and interpret role values as exactly admin/site_engineer/project_manager."
+        },
+        {
+          "path": "frontend/src/pages/auth/RegisterPage.tsx",
+          "operation": "modify",
+          "description": "Update onboarding save flow to submit standardized role values exactly (admin/site_engineer/project_manager) while rendering human-friendly labels in the role selector."
+        },
+        {
+          "path": "frontend/src/pages/ProjectsPage.tsx",
+          "operation": "modify",
+          "description": "Update admin-only gating (e.g., Create Project / Manage Roles visibility) to check for role === \"admin\" exactly, using the shared role helpers for display."
+        },
+        {
+          "path": "frontend/src/pages/DashboardPage.tsx",
+          "operation": "modify",
+          "description": "Update role-gated UI (e.g., showing Add Log for site engineers) to use exact stored values (e.g., role === \"site_engineer\") while keeping labels user-friendly via shared role helpers."
+        },
+        {
+          "path": "frontend/src/components/layout/TopNav.tsx",
+          "operation": "modify",
+          "description": "Update role badge rendering to display a human-friendly label while ensuring any conditional logic uses the exact standardized role values."
+        },
+        {
+          "path": "frontend/src/components/admin/UserRoleManager.tsx",
+          "operation": "modify",
+          "description": "Update the role assignment UI (where used for application roles) to use the standardized role values (admin/site_engineer/project_manager) and show friendly labels, preventing mixed-case or spaced role strings from being stored/propagated."
+        }
+      ]
+    },
+    {
+      "id": "REQ-17",
+      "summary": "Add an authenticated “My Profile” page for viewing/editing profile fields, with read-only role display, Save Changes feedback, and a Change password action leading to Internet Identity management.",
+      "acceptanceCriteria": [
+        "A new authenticated route/page for “My Profile” exists and is reachable from the top navigation (or user menu).",
+        "The page loads current profile data and allows editing full name/phone/designation/company name; role is displayed but not editable.",
+        "Clicking “Save Changes” persists updates and shows a success toast; failures show an error toast.",
+        "“Change password” is present and takes the user to Internet Identity password/anchor management (opens in a new tab/window or navigates appropriately)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/MyProfilePage.tsx",
+          "operation": "create",
+          "description": "Create the authenticated My Profile page with a modern SaaS card layout: editable full name/phone/designation/company name, read-only role (friendly label), a “Save Changes” button using existing React Query hooks, and success/error toast feedback."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Register a new authenticated route for the My Profile page under the existing authenticated layout and ensure routing/guards match the rest of the app."
+        },
+        {
+          "path": "frontend/src/components/layout/TopNav.tsx",
+          "operation": "modify",
+          "description": "Wire a “My Profile” navigation entry (top nav and mobile drawer) pointing to the new route, and add a “Change password” action on the My Profile page that navigates/opens the Internet Identity management flow."
+        }
+      ]
+    },
+    {
+      "id": "REQ-18",
+      "summary": "Update onboarding/registration UI to collect and save full name, phone, designation, company name, and standardized role values, maintaining English and a professional construction-tech tone.",
+      "acceptanceCriteria": [
+        "Register/Profile completion form includes inputs for full name, phone, designation, company name, and role selection.",
+        "Role selection writes exact stored values (admin/site_engineer/project_manager) even if the UI shows title-cased labels.",
+        "After successful profile creation, user is redirected to the dashboard as before."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/auth/RegisterPage.tsx",
+          "operation": "modify",
+          "description": "Replace legacy onboarding fields with full name, phone, designation, company name, and a role selector that stores exact values (admin/site_engineer/project_manager) while showing English, professional labels; keep redirect-to-dashboard behavior."
+        },
+        {
+          "path": "frontend/src/components/layout/TopNav.tsx",
+          "operation": "modify",
+          "description": "Update displayed user identity information in the header to use the new profile field names (e.g., fullName) and remove any references to deprecated fields (e.g., email/name) while keeping professional, readable formatting."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-15T08:58:45.277Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 6,
+    "implemented": 5,
+    "items": [
+      {
+        "id": "REQ-13",
+        "summary": "Update the app’s visual theme to match the specified construction-tech brand style: primary Deep Purple (#4B2E83), accent Smart Green (#3CCF4E), white backgrounds, modern SaaS cards with soft shadows and rounded edges, and a professional engineering tone across all pages (Landing, Auth, Dashboard, Projects, Daily Logs, Planning, Analytics, Reports). Replace existing blue/grey theme usages with the new palette, including gradients, icons, badges, buttons, links, and chart/status colors (keep red only for risk/critical indicators).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/components/layout/AppLayout.tsx",
+          "frontend/src/components/layout/TopNav.tsx",
+          "frontend/src/pages/LandingPage.tsx",
+          "frontend/src/pages/auth/LoginPage.tsx",
+          "frontend/src/pages/auth/RegisterPage.tsx",
+          "frontend/src/pages/DashboardPage.tsx",
+          "frontend/src/components/dashboard/DelayAlertPanel.tsx",
+          "frontend/src/pages/ProjectsPage.tsx",
+          "frontend/src/pages/DailyLogEntryPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/components/layout/AppLayout.tsx",
+          "frontend/src/components/layout/TopNav.tsx",
+          "frontend/src/pages/LandingPage.tsx",
+          "frontend/src/pages/auth/LoginPage.tsx",
+          "frontend/src/pages/auth/RegisterPage.tsx",
+          "frontend/src/pages/DashboardPage.tsx",
+          "frontend/src/components/dashboard/DelayAlertPanel.tsx",
+          "frontend/src/pages/ProjectsPage.tsx",
+          "frontend/src/pages/DailyLogEntryPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-14",
+        "summary": "Add a generated NirmaanIQ logo asset and render it in the top-left of the navigation header. Replace the current generic building icon usage in the header with the provided static logo image while keeping the app name text readable and aligned to the brand style.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/public/assets/generated/nirmaaniq-logo.dim_512x128.png",
+          "frontend/src/components/layout/TopNav.tsx",
+          "frontend/src/pages/LandingPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/public/assets/generated/nirmaaniq-logo.dim_512x128.png",
+          "frontend/src/components/layout/TopNav.tsx",
+          "frontend/src/pages/LandingPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-15",
+        "summary": "Enforce that application role values stored in the database are exactly: admin, site_engineer, project_manager. Update registration/profile save flows and any role-based UI gating to use these exact values, while optionally displaying human-friendly labels (e.g., “Admin”) in the UI.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/lib/roles.ts",
+          "frontend/src/hooks/useQueries.ts",
+          "frontend/src/pages/auth/RegisterPage.tsx",
+          "frontend/src/pages/ProjectsPage.tsx",
+          "frontend/src/pages/DashboardPage.tsx",
+          "frontend/src/components/layout/TopNav.tsx",
+          "frontend/src/components/admin/UserRoleManager.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/lib/roles.ts",
+          "frontend/src/hooks/useQueries.ts",
+          "frontend/src/pages/auth/RegisterPage.tsx",
+          "frontend/src/pages/ProjectsPage.tsx",
+          "frontend/src/pages/DashboardPage.tsx",
+          "frontend/src/components/layout/TopNav.tsx",
+          "frontend/src/components/admin/UserRoleManager.tsx"
+        ]
+      },
+      {
+        "id": "REQ-16",
+        "summary": "Extend the user profile data model and related APIs to support the requested profile fields: full_name, phone, designation, company_name, role, and assigned_project. Ensure existing stored profiles remain usable (provide a backward-compatible read path and/or a state migration to map existing fields like name/email/role into the new structure).",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-17",
+        "summary": "Add a “My Profile” page where a signed-in user can view and edit: full name, phone, designation, company name; view role as read-only; and save changes. Add an option labeled “Change password” that routes the user to the appropriate Internet Identity flow/page (since password management is handled by Internet Identity). Include a clear “Save Changes” button with success/error feedback.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/MyProfilePage.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/components/layout/TopNav.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/MyProfilePage.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/components/layout/TopNav.tsx"
+        ]
+      },
+      {
+        "id": "REQ-18",
+        "summary": "Update the onboarding/registration UI to collect and save the new user profile fields (full name, phone, designation, company name) and store role using the exact role values (admin/site_engineer/project_manager). Ensure all user-facing text remains English and consistent with the professional construction-tech tone.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/auth/RegisterPage.tsx",
+          "frontend/src/components/layout/TopNav.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/auth/RegisterPage.tsx",
+          "frontend/src/components/layout/TopNav.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/main.mo",
+    "backend/migration.mo",
+    "build-request.json",
+    "build-template/README.md",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/public/assets/generated/nirmaaniq-logo.dim_512x128.png",
+    "frontend/src/App.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/admin/UserRoleManager.tsx",
+    "frontend/src/components/dashboard/DelayAlertPanel.tsx",
+    "frontend/src/components/layout/AppLayout.tsx",
+    "frontend/src/components/layout/TopNav.tsx",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/lib/roles.ts",
+    "frontend/src/pages/DailyLogEntryPage.tsx",
+    "frontend/src/pages/DashboardPage.tsx",
+    "frontend/src/pages/LandingPage.tsx",
+    "frontend/src/pages/MyProfilePage.tsx",
+    "frontend/src/pages/ProjectsPage.tsx",
+    "frontend/src/pages/auth/LoginPage.tsx",
+    "frontend/src/pages/auth/RegisterPage.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

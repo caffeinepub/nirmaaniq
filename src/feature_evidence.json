@@ -1,0 +1,125 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-update-the-app-s-visual-theme-to-match-the-specified-construction-tech-brand-style-primary-deep-purple-4b2e83-accent-smart-green-3ccf4e-white-backgrounds-modern-saas-cards-with-soft-shadows-and-rounded-edges-and-a-professional-engineering-tone-across-all-pages-landing-auth-dashboard-projects-daily-logs-planning-analytics-reports-replace-existing-blue-grey-theme-usages-with-the-new-palette-including-gradients-icons-badges-buttons-links-and-chart-status-colors-keep-red-only-for-risk-critical-indicators",
+      "featureTitle": "Update the app’s visual theme to match the specified construction-tech brand style: primary Deep Purple (#4B2E83), accent Smart Green (#3CCF4E), white backgrounds, modern SaaS cards with soft shadows and rounded edges, and a professional engineering tone across all pages (Landing, Auth, Dashboard, Projects, Daily Logs, Planning, Analytics, Reports). Replace existing blue/grey theme usages with the new palette, including gradients, icons, badges, buttons, links, and chart/status colors (keep red only for risk/critical indicators).",
+      "files": [
+        "frontend/src/components/dashboard/DelayAlertPanel.tsx",
+        "frontend/src/components/layout/AppLayout.tsx",
+        "frontend/src/components/layout/TopNav.tsx",
+        "frontend/src/index.css",
+        "frontend/src/pages/DailyLogEntryPage.tsx",
+        "frontend/src/pages/DashboardPage.tsx",
+        "frontend/src/pages/LandingPage.tsx",
+        "frontend/src/pages/ProjectsPage.tsx",
+        "frontend/src/pages/auth/LoginPage.tsx",
+        "frontend/src/pages/auth/RegisterPage.tsx",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-13"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-generated-nirmaaniq-logo-asset-and-render-it-in-the-top-left-of-the-navigation-header-replace-the-current-generic-building-icon-usage-in-the-header-with-the-provided-static-logo-image-while-keeping-the-app-name-text-readable-and-aligned-to-the-brand-style",
+      "featureTitle": "Add a generated NirmaanIQ logo asset and render it in the top-left of the navigation header. Replace the current generic building icon usage in the header with the provided static logo image while keeping the app name text readable and aligned to the brand style.",
+      "files": [
+        "frontend/src/components/layout/TopNav.tsx",
+        "frontend/src/pages/LandingPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-14"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-enforce-that-application-role-values-stored-in-the-database-are-exactly-admin-site-engineer-project-manager-update-registration-profile-save-flows-and-any-role-based-ui-gating-to-use-these-exact-values-while-optionally-displaying-human-friendly-labels-e-g-admin-in-the-ui",
+      "featureTitle": "Enforce that application role values stored in the database are exactly: admin, site_engineer, project_manager. Update registration/profile save flows and any role-based UI gating to use these exact values, while optionally displaying human-friendly labels (e.g., “Admin”) in the UI.",
+      "files": [
+        "frontend/src/components/admin/UserRoleManager.tsx",
+        "frontend/src/components/layout/TopNav.tsx",
+        "frontend/src/hooks/useQueries.ts",
+        "frontend/src/lib/roles.ts",
+        "frontend/src/pages/DashboardPage.tsx",
+        "frontend/src/pages/ProjectsPage.tsx",
+        "frontend/src/pages/auth/RegisterPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-15"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-my-profile-page-where-a-signed-in-user-can-view-and-edit-full-name-phone-designation-company-name-view-role-as-read-only-and-save-changes-add-an-option-labeled-change-password-that-routes-the-user-to-the-appropriate-internet-identity-flow-page-since-password-management-is-handled-by-internet-identity-include-a-clear-save-changes-button-with-success-error-feedback",
+      "featureTitle": "Add a “My Profile” page where a signed-in user can view and edit: full name, phone, designation, company name; view role as read-only; and save changes. Add an option labeled “Change password” that routes the user to the appropriate Internet Identity flow/page (since password management is handled by Internet Identity). Include a clear “Save Changes” button with success/error feedback.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/layout/TopNav.tsx",
+        "frontend/src/pages/MyProfilePage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-17"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-the-onboarding-registration-ui-to-collect-and-save-the-new-user-profile-fields-full-name-phone-designation-company-name-and-store-role-using-the-exact-role-values-admin-site-engineer-project-manager-ensure-all-user-facing-text-remains-english-and-consistent-with-the-professional-construction-tech-tone",
+      "featureTitle": "Update the onboarding/registration UI to collect and save the new user profile fields (full name, phone, designation, company name) and store role using the exact role values (admin/site_engineer/project_manager). Ensure all user-facing text remains English and consistent with the professional construction-tech tone.",
+      "files": [
+        "frontend/src/components/layout/TopNav.tsx",
+        "frontend/src/pages/auth/RegisterPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-18"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

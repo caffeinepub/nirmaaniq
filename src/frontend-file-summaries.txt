@@ -1,0 +1,21 @@
+{
+  "frontend/src/components/dashboard/DelayAlertPanel.tsx": "Dashboard component that displays delay risk alerts by calling React hooks at the top level for all projects, analyzing logs and targets to detect consecutive days of underperformance, and showing intelligent suggestions for addressing delays.",
+  "frontend/src/components/reports/DprViewer.tsx": "Complete Daily Progress Report viewer component that displays comprehensive project activity data including summary metrics, detailed activity logs with interruptions and photos, project information, and productivity status. Updated Tailwind classes from flex-shrink-0 to shrink-0 for v3 compatibility.",
+  "frontend/src/lib/pdf.ts": "PDF generation utility that creates a printable HTML document for Daily Progress Reports using the browser's native print functionality, including all activity details, metrics, and project information.",
+  "frontend/src/components/daily-logs/PhotoUploader.tsx": "Photo upload component for daily logs that allows users to select and preview multiple images, storing them as base64 data URLs for submission with log entries. Removed dependency on non-existent @icp-sdk/core/storage module and uses FileReader API instead.",
+  "frontend/src/index.css": "Global stylesheet with Deep Purple (#4B2E83) and Smart Green (#3CCF4E) construction-tech color system in OKLCH format for both light and dark modes, replacing the previous blue/grey theme.",
+  "frontend/tailwind.config.js": "Tailwind configuration extended with modern SaaS card shadows (shadow-card) and design tokens aligned with the Deep Purple/Smart Green brand theme.",
+  "frontend/src/lib/roles.ts": "Centralized role management utilities providing standardized role values (admin/site_engineer/project_manager), human-friendly label mapping, and role checking helpers.",
+  "frontend/src/components/layout/AppLayout.tsx": "Main authenticated layout wrapper with white-dominant background matching the construction-tech brand theme.",
+  "frontend/src/components/layout/TopNav.tsx": "Top navigation header displaying the NirmaanIQ logo, navigation links, user profile with role badge, and My Profile link using Deep Purple/Smart Green accents.",
+  "frontend/src/pages/LandingPage.tsx": "Landing page with NirmaanIQ logo, Deep Purple/Smart Green brand styling, feature cards, and professional construction-tech tone.",
+  "frontend/src/pages/auth/LoginPage.tsx": "Login page with NirmaanIQ logo, Internet Identity authentication, and brand-aligned styling using Deep Purple accents with corrected loginStatus check for 'loginError'.",
+  "frontend/src/pages/auth/RegisterPage.tsx": "Registration/onboarding page collecting full name, phone, designation, company name, and standardized role (admin/site_engineer/project_manager) with brand-aligned styling.",
+  "frontend/src/pages/DashboardPage.tsx": "Dashboard displaying metrics, quick actions, recent projects, and delay alerts with Smart Green for positive indicators and Deep Purple for navigation accents.",
+  "frontend/src/pages/ProjectsPage.tsx": "Projects management page with admin-only Create Project and Manage Roles actions, using standardized role checks and brand-aligned card styling.",
+  "frontend/src/pages/DailyLogEntryPage.tsx": "Daily log entry form with activity details, working hours calculation, interruptions, photos, and remarks using brand-aligned styling with Smart Green for net working hours and corrected PhotoUploader prop name to 'onChange'.",
+  "frontend/src/components/admin/UserRoleManager.tsx": "Admin dialog for assigning standardized application roles (admin/site_engineer/project_manager) to users with human-friendly labels.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for all backend operations using standardized role types from the backend interface.",
+  "frontend/src/pages/MyProfilePage.tsx": "Authenticated My Profile page allowing users to edit full name, phone, designation, company name, view read-only role, save changes with toast feedback, and access Internet Identity password management.",
+  "frontend/src/App.tsx": "Main app component with routing including the new /profile route for My Profile page, authentication guards, and theme provider."
+}

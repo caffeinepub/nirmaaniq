@@ -1,0 +1,98 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-15T08:58:45.273Z",
+  "summary": "Diff implements new Deep Purple/Smart Green theme tokens, adds a My Profile page and route, adds a static logo reference in navigation/auth/landing, and introduces role utilities + backend role/profile model changes with a migration module. However, several requirements call for exact stored role strings and specific backend field names (snake_case) that the diff appears to replace with a variant role type and camelCase fields. There are also several unrelated feature changes (delay alert logic refactor, photo upload implementation change, dark-mode theming provider).",
+  "missing_requirements": [
+    {
+      "id": "REQ-15",
+      "requirement": "Enforce that application role values stored in the database are exactly: admin, site_engineer, project_manager.",
+      "reason": "Backend role is implemented as a variant type (StandardizedRole) rather than being stored as exact string values. The frontend also uses this variant type, not exact stored strings.",
+      "evidence": [
+        "backend/main.mo",
+        "backend/migration.mo",
+        "frontend/src/lib/roles.ts",
+        "frontend/src/pages/auth/RegisterPage.tsx"
+      ]
+    },
+    {
+      "id": "REQ-16",
+      "requirement": "Extend the user profile data model and related APIs to support fields: full_name, phone, designation, company_name, role, and assigned_project (backward compatible).",
+      "reason": "Backend and frontend profile fields appear to be implemented in camelCase (fullName, companyName, assignedProject) rather than the specified snake_case (full_name, company_name, assigned_project). This does not match the requested API/data model field names as written.",
+      "evidence": [
+        "backend/main.mo",
+        "backend/migration.mo",
+        "frontend/src/pages/MyProfilePage.tsx",
+        "frontend/src/pages/auth/RegisterPage.tsx",
+        "frontend/src/hooks/useQueries.ts"
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "requirement": "Add a generated NirmaanIQ logo asset and render it in the top-left of the navigation header (static frontend asset).",
+      "reason": "The code references a static logo path, but the diff summary does not show the actual image file being added (likely omitted because it is non-text/binary). Based on provided evidence alone, asset addition cannot be confirmed.",
+      "evidence": [
+        "frontend/src/components/layout/TopNav.tsx",
+        "frontend/src/pages/LandingPage.tsx",
+        "frontend/src/pages/auth/LoginPage.tsx",
+        "frontend/src/pages/auth/RegisterPage.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Introduced a dark-mode theming provider (next-themes) wrapping the app.",
+      "reason": "BuildRequest asks for branding/theme color alignment but does not request adding a ThemeProvider or dark-mode system support.",
+      "evidence": [
+        "frontend/src/App.tsx"
+      ]
+    },
+    {
+      "description": "Major refactor/implementation of delay risk analysis logic that includes calling React hooks inside a map with eslint disables.",
+      "reason": "Non-goals explicitly say not to re-implement existing modules (Delay Alerts) beyond necessary adjustments for role normalization/branding; this appears to be new/changed behavior unrelated to requested items.",
+      "evidence": [
+        "frontend/src/components/dashboard/DelayAlertPanel.tsx",
+        "frontend-file-summaries.txt"
+      ]
+    },
+    {
+      "description": "Changed photo upload implementation to base64 FileReader and removed a dependency on a storage module.",
+      "reason": "Not requested by any requirement; touches Daily Logs module which is listed as a non-goal to re-implement beyond necessary adjustments.",
+      "evidence": [
+        "frontend/src/components/daily-logs/PhotoUploader.tsx",
+        "frontend-file-summaries.txt"
+      ]
+    },
+    {
+      "description": "Added an admin-only 'Manage Roles' dialog/component for assigning roles to principals.",
+      "reason": "REQ-15 focuses on role value normalization and gating, not adding new admin UI for role assignment; this looks like additional functionality beyond the request.",
+      "evidence": [
+        "frontend/src/components/admin/UserRoleManager.tsx",
+        "frontend/src/pages/ProjectsPage.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.66,
+  "changed_files": [
+    "backend/main.mo",
+    "backend/migration.mo",
+    "frontend-file-summaries.txt",
+    "frontend/src/App.tsx",
+    "frontend/src/components/admin/UserRoleManager.tsx",
+    "frontend/src/components/dashboard/DelayAlertPanel.tsx",
+    "frontend/src/components/layout/AppLayout.tsx",
+    "frontend/src/components/layout/TopNav.tsx",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/lib/roles.ts",
+    "frontend/src/pages/DailyLogEntryPage.tsx",
+    "frontend/src/pages/DashboardPage.tsx",
+    "frontend/src/pages/LandingPage.tsx",
+    "frontend/src/pages/MyProfilePage.tsx",
+    "frontend/src/pages/ProjectsPage.tsx",
+    "frontend/src/pages/auth/LoginPage.tsx",
+    "frontend/src/pages/auth/RegisterPage.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}
